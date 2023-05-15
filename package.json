@@ -1,0 +1,16 @@
+{
+  "name": "landingai-js",
+  "version": "1.0.0",
+  "description": "Landing AI JS libraries",
+  "main": "index.js",
+  "repository": "git@github.com:landing-ai/landingai-js.git",
+  "author": "Lan Tian <tian.lan@landing.ai>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^6.6.2"
+  }
+}
