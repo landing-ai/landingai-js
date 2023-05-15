@@ -1,5 +1,7 @@
 # `doc`
 
+Documentation for the library.
+
 > TODO: description
 
 ## Usage

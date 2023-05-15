@@ -11,6 +11,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^6.6.2"
+    "lerna": "^6.6.2",
+    "typescript": "^5.0.4"
   }
 }

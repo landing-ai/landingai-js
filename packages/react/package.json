@@ -1,15 +1,11 @@
 {
-  "name": "@landingai-js/doc",
+  "name": "@landingai-js/react",
   "version": "1.0.0",
-  "description": "Documentation for landing ai js libraries",
-  "keywords": [
-    "landing.ai",
-    "inference"
-  ],
+  "description": "> TODO: description",
   "author": "Lan Tian <tian.lan@landing.ai>",
   "homepage": "https://github.com/landing-ai/landingai-js#readme",
   "license": "MIT",
-  "main": "lib/doc.js",
+  "main": "lib/react.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -22,7 +18,7 @@
     "url": "git+https://github.com/landing-ai/landingai-js.git"
   },
   "scripts": {
-    "test": "node ./__tests__/doc.test.js"
+    "test": "node ./__tests__/react.test.js"
   },
   "bugs": {
     "url": "https://github.com/landing-ai/landingai-js/issues"
