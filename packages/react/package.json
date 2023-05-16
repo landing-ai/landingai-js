@@ -5,7 +5,7 @@
   "author": "Lan Tian <tian.lan@landing.ai>",
   "homepage": "https://github.com/landing-ai/landingai-js#readme",
   "license": "MIT",
-  "main": "lib/react.js",
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -18,6 +18,8 @@
     "url": "git+https://github.com/landing-ai/landingai-js.git"
   },
   "scripts": {
+    "tsc": "tsc --outDir types",
+    "build": "esbuild index.tsx --bundle --outdir=dist --minify --sourcemap",
     "test": "node ./__tests__/react.test.js"
   },
   "bugs": {
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.2.6",
-    "@types/react-dom": "^18.2.4"
+    "@types/react-dom": "^18.2.4",
+    "esbuild": "^0.17.19"
   }
 }

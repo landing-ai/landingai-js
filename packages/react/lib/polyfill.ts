@@ -21,3 +21,5 @@ if (!self.OffscreenCanvas) {
     }
   };
 }
+
+export default {};

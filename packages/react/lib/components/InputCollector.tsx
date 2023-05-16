@@ -12,7 +12,7 @@ const InputInfo: Array<{
   label: string;
 }> = [
   {
-    key: "endpoint",
+    key: "endpointId",
     label: "Endpoint",
   },
   {
