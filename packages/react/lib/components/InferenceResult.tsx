@@ -62,7 +62,7 @@ export type InferenceResultProps = {
   onGoBack: () => void;
 };
 
-export default function InferenceResult(props: InferenceResultProps) {
+export function InferenceResult(props: InferenceResultProps) {
   const { image, onGoBack } = props;
   const apiInfo = useInferenceContext();
 
