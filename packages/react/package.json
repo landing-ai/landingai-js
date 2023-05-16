@@ -19,7 +19,7 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "build": "esbuild index.tsx --bundle --outdir=dist --minify --sourcemap",
+    "build": "esbuild index.tsx --bundle --outdir=dist --minify --sourcemap --keep-names",
     "test": "echo 'no tests yet'"
   },
   "bugs": {
