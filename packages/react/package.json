@@ -11,7 +11,10 @@
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "dist",
+    "types",
+    "index.tsx"
   ],
   "repository": {
     "type": "git",
