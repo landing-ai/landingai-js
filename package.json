@@ -10,8 +10,8 @@
   "scripts": {
     "build": "npx lerna run build",
     "tsc": "npx lerna run tsc",
-    "publish": "npx lerna publish --canary --dist-tag latest",
-    "build-publish": "yarn build && yarn tsc && yarn publish"
+    "lerna-publish": "npx lerna publish --canary --dist-tag latest",
+    "build-publish": "yarn build && yarn tsc && yarn lerna-publish"
   },
   "workspaces": [
     "packages/*"
