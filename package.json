@@ -11,7 +11,7 @@
     "build": "npx lerna run build",
     "tsc": "npx lerna run tsc",
     "publish": "npx lerna publish --canary --dist-tag latest",
-    "build-publish": "yarn build && yanr tsc && yarn publish"
+    "build-publish": "yarn build && yarn tsc && yarn publish"
   },
   "workspaces": [
     "packages/*"
