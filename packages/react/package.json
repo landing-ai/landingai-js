@@ -1,6 +1,6 @@
 {
   "name": "@landingai-js/react",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0",
   "description": "> TODO: description",
   "author": "Lan Tian <tian.lan@landing.ai>",
   "homepage": "https://github.com/landing-ai/landingai-js#readme",
@@ -26,7 +26,7 @@
     "url": "https://github.com/landing-ai/landingai-js/issues"
   },
   "dependencies": {
-    "@landingai-js/core": "^1.0.0-alpha.1",
+    "@landingai-js/core": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

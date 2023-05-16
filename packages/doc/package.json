@@ -1,6 +1,6 @@
 {
   "name": "@landingai-js/doc",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0",
   "description": "Documentation for landing ai js libraries",
   "keywords": [
     "landing.ai",
@@ -28,6 +28,6 @@
     "url": "https://github.com/landing-ai/landingai-js/issues"
   },
   "dependencies": {
-    "@landingai-js/core": "^1.0.0-alpha.1"
+    "@landingai-js/core": "^1.0.0"
   }
 }
