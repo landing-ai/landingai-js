@@ -22,7 +22,7 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "build": "esbuild index.tsx --bundle --outdir=dist --minify --sourcemap --packages=external --platform=node",
+    "build": "node build.js",
     "test": "jest"
   },
   "bugs": {
@@ -38,6 +38,7 @@
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "esbuild": "^0.17.19",
+    "esbuild-css-modules-plugin": "^2.7.1",
     "esbuild-jest": "^0.5.0",
     "jest": "^29.5.0"
   }
