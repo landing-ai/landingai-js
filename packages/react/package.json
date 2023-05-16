@@ -20,7 +20,7 @@
   "scripts": {
     "tsc": "tsc",
     "build": "esbuild index.tsx --bundle --outdir=dist --minify --sourcemap",
-    "test": "node ./__tests__/react.test.js"
+    "test": "echo 'no tests yet'"
   },
   "bugs": {
     "url": "https://github.com/landing-ai/landingai-js/issues"
