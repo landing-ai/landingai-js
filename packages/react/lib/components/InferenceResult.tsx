@@ -11,7 +11,7 @@ interface InferenceResultProps {
   onGoBack: () => void;
 };
 
-export function InferenceResult(props: InferenceResultProps) {
+export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
   const { image, setImage, onGoBack } = props;
   const apiInfo = useInferenceContext();
 
