@@ -1,15 +1,47 @@
+.bottomButton {
+  margin-top: auto;
+  margin-bottom: 8px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.errorLabel {
+  color: red;
+}
+
 .inferenceResult {
   position: relative;
+  margin-top: 16px;
 }
 
 .inferenceSummary {
-  margin-top: 1rem;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 12px;
+  background-color: #f4f4f4;
+  min-height: 5rem;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 0.25rem;
 }
 
 .annotation {
   position: absolute;
   border-width: 2px;
   border-style: solid;
+}
+
+.labelNameCount {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 300;
 }
 
 .text {
@@ -24,16 +56,27 @@
   position: relative;
 }
 
-.photoPlaceholder {
-  width: 100%;
-  background-color: #ddd;
-  margin-top: 0.5rem;
-  padding: 12px;
-  padding-bottom: 100%;
+.preview {
+  border-radius: 0.25rem;
 }
 
-.backButton {
-  margin-top: 2rem;
+.photoPlaceholder {
+  width: 100%;
+  background-color: #f4f4f4;
+  padding: 12px;
+  padding-bottom: 100%;
+  border-radius: 0.25rem;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.fileInput {
+  opacity: 0;
+  position: absolute;
 }
 
 .blur {
@@ -57,10 +100,11 @@
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  border: 6px solid #0056FE;
-  border-color: #0056FE transparent #0056FE transparent;
+  border: 6px solid #0056fe;
+  border-color: #0056fe transparent #0056fe transparent;
   animation: ring 1.2s linear infinite;
 }
+
 @keyframes ring {
   0% {
     transform: rotate(0deg);

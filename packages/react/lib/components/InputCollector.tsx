@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ApiInfo } from "@landingai-js/core";
-import styles from "./InputCollector.module.css";
+import styles from "./index.module.css";
 
 export type InputCollectorProps = {
   apiInfo: ApiInfo;
@@ -62,7 +62,7 @@ export const InputCollector: React.FC<InputCollectorProps> = (props) => {
           </div>
         ))}
       </div>
-      <button style={{ marginTop: 'auto' }} onClick={onClick}>Set</button>
+      <button className={styles.bottomButton} onClick={onClick}>Set</button>
     </>
   );
 };
