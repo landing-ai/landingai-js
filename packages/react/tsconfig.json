@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "types",
     "target": "es2018",
     "lib": ["dom", "dom.iterable", "esnext"],

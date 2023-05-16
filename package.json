@@ -6,6 +6,7 @@
   "repository": "git@github.com:landing-ai/landingai-js.git",
   "author": "Lan Tian <tian.lan@landing.ai>",
   "license": "MIT",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],

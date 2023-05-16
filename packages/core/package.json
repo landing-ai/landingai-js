@@ -22,7 +22,7 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "build": "esbuild index.ts --bundle --outdir=dist --minify --sourcemap --keep-names",
+    "build": "esbuild index.ts --bundle --outdir=dist --minify --sourcemap --packages=external --platform=node",
     "test": "jest"
   },
   "bugs": {

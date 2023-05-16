@@ -1,5 +1,5 @@
 module.exports = {
   transform: {
-    "^.+\\.ts$": "esbuild-jest"
+    "^.+\\.tsx?$": "esbuild-jest"
   },
 };
