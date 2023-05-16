@@ -19,8 +19,8 @@
   },
   "scripts": {
     "tsc": "tsc --outDir types",
-    "build": "esbuild lib/index.ts --bundle --outdir=dist --minify --sourcemap",
-    "test": "node ./__tests__/core.test.js"
+    "build": "esbuild index.ts --bundle --outdir=dist --minify --sourcemap",
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/landing-ai/landingai-js/issues"
@@ -29,6 +29,10 @@
     "exif-js": "^2.3.0"
   },
   "devDependencies": {
-    "esbuild": "^0.17.19"
+    "@types/assert": "^1.5.6",
+    "@types/jest": "^29.5.1",
+    "esbuild": "^0.17.19",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^29.5.0"
   }
 }

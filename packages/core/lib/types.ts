@@ -1,7 +1,8 @@
 export interface ApiInfo {
   key: string;
   secret: string;
-  endpoint: string;
+  endpointId: string;
+  baseUrl: string;
 }
 
 export type Coordinates = {

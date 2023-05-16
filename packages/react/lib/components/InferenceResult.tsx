@@ -1,14 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { calcAnnotationTextStylesStyles } from "@landingai-js/core/utils/textUtils";
-import { isDark } from "@landingai-js/core/utils/colorUtils";
-import { Annotation } from "@/types";
+import { isDark, countBy, dataUrlToFile, resetOrientation, predictionsToAnnotations, Annotation } from "@landingai-js/core";
 import styles from "./InferenceResult.module.css";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { dataUrlToFile, resetOrientation } from "@landingai-js/core/utils/imageUtils";
-import { predictionsToAnnotations } from "@landingai-js/core/utils/annotationUtils";
-import { countBy } from "lodash";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useInferenceContext } from "../context/InferenceContext";
-import { BASE_URL } from "@/configs.mjs";
 
 type AnnotationComponentProps = {
   annotation: Annotation;
@@ -40,13 +34,13 @@ function AnnotationComponent(props: AnnotationComponentProps) {
   const textBoundingRectStyles = useMemo(() => {
     const { coordinates, color, name } = annotation;
 
-    const styles = calcAnnotationTextStylesStyles({
+    const styles = {
       ...coordinates,
       imageWidth,
       imageHeight,
       scale: 1,
       text: name,
-    });
+    } as Record<string, any>;
     styles.backgroundColor = color;
     styles.color = isDark(color) ? "white" : "black";
     return styles;
@@ -97,7 +91,7 @@ export default function InferenceResult(props: InferenceResultProps) {
         const formData = new FormData();
         formData.append("file", imageFile);
         const result = await fetch(
-          `${BASE_URL}/inference/v1/predict?endpoint_id=${apiInfo.endpoint}`,
+          `${apiInfo.baseUrl}/inference/v1/predict?endpoint_id=${apiInfo.endpointId}`,
           {
             headers: {
               Accept: "*/*",

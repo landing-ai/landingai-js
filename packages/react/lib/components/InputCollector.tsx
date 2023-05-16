@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ApiInfo } from "@/types";
+import { ApiInfo } from "@landingai-js/core";
 import styles from "./InputCollector.module.css";
 
 export type InputCollectorProps = {

@@ -1,10 +1,11 @@
-import { ApiInfo } from "@landingai-js/core/types";
+import { ApiInfo } from "@landingai-js/core";
 import { createContext, useContext } from "react";
 
 export type InferenceContextState = ApiInfo & {};
 
 export const initialInferenceContext: InferenceContextState = {
-  endpoint: '',
+  baseUrl: '',
+  endpointId: '',
   key: '',
   secret: '',
 };

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React from "react";
 import styles from "./PhotoCollector.module.css";
 
 export interface PhotoCollectorProps {
