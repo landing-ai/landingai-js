@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { isDark, countBy, dataUrlToFile, resetOrientation, predictionsToAnnotations, Annotation } from "@landingai-js/core";
 import styles from "./InferenceResult.module.css";
-import { useCallback, useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useInferenceContext } from "../context/InferenceContext";
 
 type AnnotationComponentProps = {
