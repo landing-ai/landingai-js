@@ -13,7 +13,8 @@
   "files": [
     "lib",
     "dist",
-    "types"
+    "types",
+    "index.ts"
   ],
   "repository": {
     "type": "git",
