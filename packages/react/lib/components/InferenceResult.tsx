@@ -3,16 +3,14 @@ import { isDark, countBy, predictionsToAnnotations, Annotation } from "@landinga
 import styles from "./index.module.css";
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useInferenceContext } from "../context/InferenceContext";
-import { EImageType, compressAccurately } from 'image-conversion';
 
 interface InferenceResultProps {
   image?: Blob;
-  setImage: (image: Blob) => void;
-  onGoBack: () => void;
+  onGoBack?: () => void;
 };
 
 export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
-  const { image, setImage, onGoBack } = props;
+  const { image, onGoBack } = props;
   const apiInfo = useInferenceContext();
 
   const imageRef = useRef<HTMLImageElement>(null);
@@ -28,17 +26,6 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
       count,
     }));
   }, [annotations]);
-
-  const capture = async (e: React.SyntheticEvent<HTMLInputElement>) => {
-    const files = (e.target as HTMLInputElement).files;
-    if (files?.length && files[0]) {
-      const compressed = await compressAccurately(files[0], {
-        size: 1000,
-        type: EImageType.JPEG,
-      });
-      setImage(compressed);
-    }
-  };
 
   const onPredict = useCallback(
     async (image: Blob) => {
@@ -90,10 +77,6 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
 
   return (
     <>
-      <div className={styles.container}>
-        <button>Select a photo</button>
-        <input onChange={capture} className={styles.fileInput} type="file" accept="image/*" />
-      </div>
       <div className={styles.inferenceResult}>
         {!preview && (
           <div className={styles.photoPlaceholder}>
@@ -132,9 +115,11 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
           ))}
         </div>}
       </div>
-      <button className={styles.bottomButton} onClick={onGoBack}>
-        Set API Configuration
-      </button>
+      {!!onGoBack && (
+        <button className={styles.bottomButton} onClick={onGoBack}>
+          Set API Configuration
+        </button>
+      )}
     </>
   );
 }
