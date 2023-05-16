@@ -1,0 +1,19 @@
+
+
+.container {
+  margin: 8px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.fileInput {
+  opacity: 0;
+  position: absolute;
+}
+
+.switch {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+}

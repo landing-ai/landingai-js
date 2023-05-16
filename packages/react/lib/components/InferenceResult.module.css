@@ -1,0 +1,71 @@
+.inferenceResult {
+  position: relative;
+}
+
+.inferenceSummary {
+  margin-top: 1rem;
+}
+
+.annotation {
+  position: absolute;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.text {
+  position: absolute;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.photoPlaceholder {
+  width: 100%;
+  background-color: #ddd;
+  margin-top: 0.5rem;
+  padding: 12px;
+  padding-bottom: 100%;
+}
+
+.backButton {
+  margin-top: 2rem;
+}
+
+.blur {
+  filter: blur(0.5rem);
+}
+
+.ring {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+}
+
+.ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #0056FE;
+  border-color: #0056FE transparent #0056FE transparent;
+  animation: ring 1.2s linear infinite;
+}
+@keyframes ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
