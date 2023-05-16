@@ -18,7 +18,7 @@
     "url": "git+https://github.com/landing-ai/landingai-js.git"
   },
   "scripts": {
-    "tsc": "tsc --outDir types",
+    "tsc": "tsc",
     "build": "esbuild index.ts --bundle --outdir=dist --minify --sourcemap",
     "test": "jest"
   },
