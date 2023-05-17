@@ -33,13 +33,19 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
         setIsLoading(true);
         const formData = new FormData();
         formData.append("file", image);
+        const endpointUrl = new URL(apiInfo.endpoint);
         const result = await fetch(
-          `${apiInfo.baseUrl}/inference/v1/predict?endpoint_id=${apiInfo.endpointId}`,
+          apiInfo.endpoint,
           {
             headers: {
               Accept: "*/*",
-              apikey: apiInfo.key,
-              apisecret: apiInfo.secret,
+              ...((apiInfo.key && apiInfo.secret)
+                ? {
+                  apikey: apiInfo.key,
+                  apisecret: apiInfo.secret,
+                }
+                : undefined
+              )
             },
             body: formData,
             referrerPolicy: "strict-origin-when-cross-origin",
@@ -133,12 +139,10 @@ interface AnnotationComponentProps {
 function AnnotationComponent(props: AnnotationComponentProps) {
   const { annotation, imageWidth, imageHeight } = props;
 
-  // TODO: extract to a util function
   const style = useMemo(() => {
-    const {
-      coordinates: { xmin, xmax, ymin, ymax },
-      color,
-    } = annotation;
+    const { coordinates, color } = annotation;
+    // TODO: support segmentation as well
+    const { xmin, xmax, ymin, ymax } = coordinates!;
     const width = xmax - xmin;
     const height = ymax - ymin;
 
