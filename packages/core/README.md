@@ -20,15 +20,12 @@ const apiInfo = {
   secret: "uddg996h9r727apbldj5gz8maym85on1oqjut34q0mns43exln5za50mbtcbbm",
 }
 // 2. get an image and convert to blob
-fetch("url-to-image")
-  .then((response) => response.blob())
-  .then((blob) => {
-    // 3. get predictions from the blob
-    const { backbonepredictions } = await getInferenceResult(apiInfo, image);
-    // 4. convert to annotations for rendering
-    const annotations = predictionsToAnnotations(backbonepredictions);
-    // render annotations
-  });
+const blob = await fetch("url-to-image").then((response) => response.blob());
+// 3. get predictions from the blob
+const { backbonepredictions } = await getInferenceResult(apiInfo, blob);
+// 4. convert to annotations for rendering
+const annotations = predictionsToAnnotations(backbonepredictions);
+// render annotations
 ```
 
 ### Color utilities

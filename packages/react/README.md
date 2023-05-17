@@ -15,7 +15,7 @@ const apiInfo = {
   secret: "uddg996h9r727apbldj5gz8maym85on1oqjut34q0mns43exln5za50mbtcbbm",
 };
 
-export default function Home() {
+export default function App() {
   const [image, setImage] = useState<Blob>();
 
   return (
@@ -28,6 +28,5 @@ export default function Home() {
 ```
 
 ## Examples
-
-* [Example project deploying to Githu Pages](https://github.com/landing-ai/inference-h5)
-* [Example in code sandbox](https://codesandbox.io/s/landing-ai-inference-app-yzsbsk)
+- [Codesandbox React example](https://codesandbox.io/s/eloquent-tesla-yzsbsk?file=/src/App.js)
+- [Github Pages React example](https://github.com/landing-ai/inference-h5)
