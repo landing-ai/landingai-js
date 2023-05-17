@@ -105,3 +105,6 @@ export type Annotation = {
   name: string;
 };
 
+// export type InferenceResult = {
+
+// };

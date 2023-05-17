@@ -33,7 +33,6 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
         setIsLoading(true);
         const formData = new FormData();
         formData.append("file", image);
-        const endpointUrl = new URL(apiInfo.endpoint);
         const result = await fetch(
           apiInfo.endpoint,
           {
