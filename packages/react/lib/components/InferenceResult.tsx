@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { isDark, countBy, predictionsToAnnotations, Annotation } from "@landingai-js/core";
+import { isDark, countBy, predictionsToAnnotations, Annotation, getInferenceResult } from "@landingai-js/core";
 import styles from "./index.module.css";
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useInferenceContext } from "../context/InferenceContext";
@@ -31,29 +31,7 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
     async (image: Blob) => {
       try {
         setIsLoading(true);
-        const formData = new FormData();
-        formData.append("file", image);
-        const result = await fetch(
-          apiInfo.endpoint,
-          {
-            headers: {
-              Accept: "*/*",
-              ...((apiInfo.key && apiInfo.secret)
-                ? {
-                  apikey: apiInfo.key,
-                  apisecret: apiInfo.secret,
-                }
-                : undefined
-              )
-            },
-            body: formData,
-            referrerPolicy: "strict-origin-when-cross-origin",
-            method: "POST",
-            credentials: "omit",
-            mode: "cors",
-          }
-        );
-        const json = await result.json();
+        const json = await getInferenceResult(apiInfo, image);
         setAnnotations(predictionsToAnnotations(json.backbonepredictions));
       } catch (err) {
         console.error(err);

@@ -105,6 +105,9 @@ export type Annotation = {
   name: string;
 };
 
-// export type InferenceResult = {
-
-// };
+/**
+ * Inference API response
+ */
+export type InferenceResult = {
+  backbonepredictions: PredictionsMap;
+};
