@@ -31,8 +31,8 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
     async (image: Blob) => {
       try {
         setIsLoading(true);
-        const json = await getInferenceResult(apiInfo, image);
-        setAnnotations(predictionsToAnnotations(json.backbonepredictions));
+        const result = await getInferenceResult(apiInfo, image);
+        setAnnotations(predictionsToAnnotations(result.backbonepredictions));
       } catch (err) {
         console.error(err);
       } finally {
