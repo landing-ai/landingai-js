@@ -136,10 +136,10 @@ function AnnotationComponent(props: AnnotationComponentProps) {
     const { color } = annotation;
     return {
       left: 0,
-      top: 0,
-      padding: 6,
+      top: -4,
       backgroundColor: color,
       color: isDark(color) ? "white" : "black",
+      outlineColor: isDark(color) ? "white" : "black",
       transform: 'translateY(-100%)',
     } as CSSProperties;
   }, [annotation, imageHeight, imageWidth]);

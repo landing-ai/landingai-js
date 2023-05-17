@@ -15,7 +15,7 @@ export interface ApiInfo {
    */
   secret?: string;
   /**
-   * The could deployment endpoint. See https://support.landing.ai/docs/cloud-deployment
+   * The cloud deployment endpoint. See https://support.landing.ai/docs/cloud-deployment
    */
   endpoint: string;
 }
