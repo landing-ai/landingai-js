@@ -1,18 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import { isDark, countBy, predictionsToAnnotations, Annotation } from "@landingai-js/core";
+import { isDark, countBy, predictionsToAnnotations, Annotation, getInferenceResult } from "@landingai-js/core";
 import styles from "./index.module.css";
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useInferenceContext } from "../context/InferenceContext";
-import { EImageType, compressAccurately } from 'image-conversion';
 
 interface InferenceResultProps {
   image?: Blob;
-  setImage: (image: Blob) => void;
-  onGoBack: () => void;
+  onGoBack?: () => void;
 };
 
 export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
-  const { image, setImage, onGoBack } = props;
+  const { image, onGoBack } = props;
   const apiInfo = useInferenceContext();
 
   const imageRef = useRef<HTMLImageElement>(null);
@@ -29,40 +27,12 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
     }));
   }, [annotations]);
 
-  const capture = async (e: React.SyntheticEvent<HTMLInputElement>) => {
-    const files = (e.target as HTMLInputElement).files;
-    if (files?.length && files[0]) {
-      const compressed = await compressAccurately(files[0], {
-        size: 1000,
-        type: EImageType.JPEG,
-      });
-      setImage(compressed);
-    }
-  };
-
   const onPredict = useCallback(
     async (image: Blob) => {
       try {
         setIsLoading(true);
-        const formData = new FormData();
-        formData.append("file", image);
-        const result = await fetch(
-          `${apiInfo.baseUrl}/inference/v1/predict?endpoint_id=${apiInfo.endpointId}`,
-          {
-            headers: {
-              Accept: "*/*",
-              apikey: apiInfo.key,
-              apisecret: apiInfo.secret,
-            },
-            body: formData,
-            referrerPolicy: "strict-origin-when-cross-origin",
-            method: "POST",
-            credentials: "omit",
-            mode: "cors",
-          }
-        );
-        const json = await result.json();
-        setAnnotations(predictionsToAnnotations(json.backbonepredictions));
+        const result = await getInferenceResult(apiInfo, image);
+        setAnnotations(predictionsToAnnotations(result.backbonepredictions));
       } catch (err) {
         console.error(err);
       } finally {
@@ -90,10 +60,6 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
 
   return (
     <>
-      <div className={styles.container}>
-        <button>Select a photo</button>
-        <input onChange={capture} className={styles.fileInput} type="file" accept="image/*" />
-      </div>
       <div className={styles.inferenceResult}>
         {!preview && (
           <div className={styles.photoPlaceholder}>
@@ -132,9 +98,11 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
           ))}
         </div>}
       </div>
-      <button className={styles.bottomButton} onClick={onGoBack}>
-        Set API Configuration
-      </button>
+      {!!onGoBack && (
+        <button className={styles.bottomButton} onClick={onGoBack}>
+          Set API Configuration
+        </button>
+      )}
     </>
   );
 }
@@ -148,12 +116,10 @@ interface AnnotationComponentProps {
 function AnnotationComponent(props: AnnotationComponentProps) {
   const { annotation, imageWidth, imageHeight } = props;
 
-  // TODO: extract to a util function
   const style = useMemo(() => {
-    const {
-      coordinates: { xmin, xmax, ymin, ymax },
-      color,
-    } = annotation;
+    const { coordinates, color } = annotation;
+    // TODO: support segmentation as well
+    const { xmin, xmax, ymin, ymax } = coordinates!;
     const width = xmax - xmin;
     const height = ymax - ymin;
 
@@ -170,10 +136,10 @@ function AnnotationComponent(props: AnnotationComponentProps) {
     const { color } = annotation;
     return {
       left: 0,
-      top: 0,
-      padding: 6,
+      top: -4,
       backgroundColor: color,
       color: isDark(color) ? "white" : "black",
+      outlineColor: isDark(color) ? "white" : "black",
       transform: 'translateY(-100%)',
     } as CSSProperties;
   }, [annotation, imageHeight, imageWidth]);

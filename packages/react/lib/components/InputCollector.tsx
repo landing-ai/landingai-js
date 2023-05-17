@@ -12,7 +12,7 @@ const InputInfo: Array<{
   label: string;
 }> = [
   {
-    key: "endpointId",
+    key: "endpoint",
     label: "Endpoint",
   },
   {
@@ -31,9 +31,7 @@ export const InputCollector: React.FC<InputCollectorProps> = (props) => {
   const [showError, setShowError] = useState<Boolean>(false);
 
   const onClick = () => {
-    const hasEmpty = InputInfo.some(
-      (input) => info[input.key].trim().length === 0
-    );
+    const hasEmpty = info.endpoint.trim().length === 0;
     if (hasEmpty) {
       setShowError(true);
     } else {
@@ -56,7 +54,7 @@ export const InputCollector: React.FC<InputCollectorProps> = (props) => {
                 })
               }
             />
-            {showError && info[input.key].trim().length === 0 && (
+            {showError && !!info[input.key] && info[input.key]!.trim().length === 0 && (
               <label className={styles.errorLabel}>Value cannot be empty</label>
             )}
           </div>
