@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [closed]
     branches:
-      - development
+      - develop
       - main
 
 jobs:
