@@ -12,11 +12,10 @@
     "test": "__tests__"
   },
   "files": [
-    "lib",
     "dist",
-    "types",
-    "index.ts"
+    "types"
   ],
+  "types": "types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/landing-ai/landingai-js.git"
