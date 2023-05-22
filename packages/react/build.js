@@ -8,7 +8,7 @@ require("esbuild")
     entryPoints: ["index.tsx"],
     bundle: true,
     outdir: "dist",
-    // minify: true,
+    minify: true,
     sourcemap: true,
     packages: 'external',
     platform: 'node',
