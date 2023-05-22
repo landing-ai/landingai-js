@@ -27,5 +27,11 @@ export default function App() {
 }
 ```
 
+**References**
+
+* [How to get an endpoint](https://support.landing.ai/docs/cloud-deployment)
+* [How to get api key and secret](https://support.landing.ai/docs/api-key-and-api-secret)
+
+
 ## Examples
 - [Codesandbox React example](https://codesandbox.io/s/eloquent-tesla-yzsbsk?file=/src/App.js)
