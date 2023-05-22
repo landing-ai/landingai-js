@@ -28,6 +28,11 @@ const annotations = predictionsToAnnotations(backbonepredictions);
 // render annotations
 ```
 
+**References**
+
+* [How to get an endpoint](https://support.landing.ai/docs/cloud-deployment)
+* [How to get api key and secret](https://support.landing.ai/docs/api-key-and-api-secret)
+
 ### Color utilities
 
 #### `isDark`
