@@ -22,6 +22,12 @@ jobs:
       with:
         node-version: '14'
 
+    - name: "NPM Identity"
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+
     - name: "Bump Version"
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,11 +36,13 @@ jobs:
         git config user.name "${{ github.actor }}"
         git config user.email "${{ github.actor}}@users.noreply.github.com"
 
-        if [ ${{ github.base_ref }} = development ]; then
+        if [ ${{ github.base_ref }} = develop ]; then
           npx lerna version --conventional-commits --conventional-prerelease --preid beta --yes
         else
           npx lerna version --conventional-commits --conventional-graduate --yes
         fi
+
+        npx lerna publish from-git --no-verify-access --yes
 
     - name: Bump Version Fallback
       env:
@@ -44,9 +52,4 @@ jobs:
         echo Falling back to non-graduate release due to https://github.com/lerna/lerna/issues/2532
         git stash
         npx lerna version --conventional-commits --yes
-
-    - name: Publish Version
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        npx lerna publish from-git --yes
+        npx lerna publish from-git --no-verify-access --yes
