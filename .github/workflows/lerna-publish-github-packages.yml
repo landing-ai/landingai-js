@@ -36,8 +36,6 @@ jobs:
           npx lerna version --conventional-commits --conventional-graduate --yes
         fi
 
-        npx lerna publish from-git --yes
-
     - name: Bump Version Fallback
       if: ${{ always() && steps.graduateRelease.outcome == 'failure'  }}
       run: |
