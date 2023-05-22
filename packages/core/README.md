@@ -15,9 +15,9 @@ yarn add @landingai-js/core
 ```javascript
 // 1. setup endpoint and credentials
 const apiInfo = {
-  endpoint: "https://predict.app.dev.landing.ai/inference/v1/predict?endpoint_id=034f820c-1eb2-40b4-9d30-3a78ea1301b1",
-  key: "6fi499ym6jblnqxv772q350umrlmlq0",
-  secret: "uddg996h9r727apbldj5gz8maym85on1oqjut34q0mns43exln5za50mbtcbbm",
+  endpoint: "https://predict.app.dev.landing.ai/inference/v1/predict?endpoint_id=<endpoint_id>",
+  key: "<api_key>",
+  secret: "<api_secret>",
 }
 // 2. get an image and convert to blob
 const blob = await fetch("url-to-image").then((response) => response.blob());
