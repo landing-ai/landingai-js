@@ -13,6 +13,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
     - name: "Use NodeJS 16"
       uses: actions/setup-node@v2
@@ -44,7 +45,7 @@ jobs:
 
     - name: Bump Version
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
       run: |
         git config user.name "${{ github.actor }}"
         git config user.email "${{ github.actor}}@users.noreply.github.com"
