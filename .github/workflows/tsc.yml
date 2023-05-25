@@ -1,4 +1,4 @@
-name: Publish
+name: TSC
 on:
   pull_request:
     paths:
@@ -9,7 +9,7 @@ on:
       - 'yarn.lock'
 
 jobs:
-  publish:
+  ci-tsc:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
