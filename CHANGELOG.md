@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/landing-ai/landingai-js/compare/v1.0.5...v1.0.6) (2023-05-25)
+
+**Note:** Version bump only for package landingai-js
+
+
+
+
+
 ## [1.0.5](https://github.com/landing-ai/landingai-js/compare/v1.0.4...v1.0.5) (2023-05-22)
 
 **Note:** Version bump only for package landingai-js

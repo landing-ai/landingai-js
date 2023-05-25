@@ -1,6 +1,6 @@
 {
   "name": "@landingai-js/core",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "> TODO: description",
   "author": "Lan Tian <tian.lan@landing.ai>",
   "homepage": "https://github.com/landing-ai/landingai-js#readme",
@@ -28,7 +28,6 @@
   "bugs": {
     "url": "https://github.com/landing-ai/landingai-js/issues"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/assert": "^1.5.6",
     "@types/jest": "^29.5.1",
