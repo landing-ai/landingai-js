@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useInferenceContext } from "../context/InferenceContext";
 
-interface InferenceResultProps {
+export interface InferenceResultProps {
   image?: Blob;
   onGoBack?: () => void;
 };

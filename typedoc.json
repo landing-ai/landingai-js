@@ -1,0 +1,6 @@
+{
+  "entryPoints": ["packages/*"],
+  "name": "Landing AI JS Library",
+  "entryPointStrategy": "packages",
+  "includeVersion": true
+}

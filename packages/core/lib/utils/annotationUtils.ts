@@ -2,7 +2,7 @@ import { Annotation, ObjectDetectionPrediction, PredictionsMap } from "../types"
 import { palette } from "./colorUtils";
 
 /**
- * Convert server format predictions into a list of Annotation for easy rendering
+ * Convert server format predictions into a list of {@link Annotation} for easy rendering
  */
 export function predictionsToAnnotations(predictionsMap: PredictionsMap) {
   return Object.entries(predictionsMap).map(([id, prediction]) => ({

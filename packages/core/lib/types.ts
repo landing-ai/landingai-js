@@ -77,7 +77,7 @@ export type ClassificationPrediction = BasePrediction & {};
 export type Prediction = ObjectDetectionPrediction | SegmentationPrediction | ClassificationPrediction;
 
 /**
- * A uuid to prediction map
+ * A map where keys are uuids of predictions and values are predictions.
  */
 export type PredictionsMap = Record<string, Prediction>;
 

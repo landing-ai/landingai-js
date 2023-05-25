@@ -1,3 +1,6 @@
+/**
+ * Color palette for predicted classes.
+ */
 export const palette = [
   '#811776',
   '#FFFF00',
@@ -20,7 +23,15 @@ export const palette = [
   '#333275',
 ];
 
-export function hexToRgb(hex: string | null | undefined) {
+/**
+ * RGB color object
+ */
+export type RGB = { r: number; g: number; b: number };
+
+/**
+ * convert a hex color to RGB
+ */
+export function hexToRgb(hex: string | null | undefined): RGB {
   const fallback = { r: 0, g: 0, b: 0 };
   if (!hex) return fallback;
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -33,7 +44,16 @@ export function hexToRgb(hex: string | null | undefined) {
     : fallback;
 }
 
-export function isDark(rgb: string | null | undefined | { r: number; g: number; b: number }) {
+/**
+ * Check if a color is dark color or not.
+ * 
+ * For example:
+ * 
+ * ```javascript
+ * const textColor = isDark(someColor) ? 'white' : 'black';
+ * ```
+ */
+export function isDark(rgb: string | null | undefined | RGB) {
   if (typeof rgb === 'string' || rgb === null || rgb === undefined) {
     rgb = hexToRgb(rgb);
   }
