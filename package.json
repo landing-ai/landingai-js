@@ -10,14 +10,14 @@
   "scripts": {
     "build": "npx lerna run build",
     "tsc": "npx lerna run tsc",
-    "lerna-publish": "npx lerna publish --canary --dist-tag latest",
-    "build-publish": "yarn build && yarn tsc && yarn lerna-publish"
+    "docs": "typedoc"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
     "lerna": "^6.6.2",
+    "typedoc": "^0.24.7",
     "typescript": "^5.0.4"
   }
 }
