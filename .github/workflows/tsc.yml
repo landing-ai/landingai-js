@@ -10,7 +10,6 @@ on:
 
 jobs:
   ci-tsc:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +23,11 @@ jobs:
       with:
         node-version: '16'
         cache: 'yarn'
-    
+
+    - name: "Install dependencies"
+      run: |
+        yarn install
+
     - name: "TSC"
       run: |
         yarn tsc
