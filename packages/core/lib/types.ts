@@ -4,16 +4,12 @@
 export interface ApiInfo {
   /**
    * Landing AI API key of a particular LandingLens user. See https://support.landing.ai/docs/api-key-and-api-secret
-   *
-   * Not required for public endpoints.
    */
-  key?: string;
+  key: string;
   /**
    * Landing AI API secret of a particular LandingLens user. See https://support.landing.ai/docs/api-key-and-api-secret
-   *
-   * Not required for public endpoints.
    */
-  secret?: string;
+  secret: string;
   /**
    * The cloud deployment endpoint. See https://support.landing.ai/docs/cloud-deployment
    */
