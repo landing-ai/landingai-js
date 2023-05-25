@@ -28,9 +28,7 @@
   "bugs": {
     "url": "https://github.com/landing-ai/landingai-js/issues"
   },
-  "dependencies": {
-    "exif-js": "^2.3.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/assert": "^1.5.6",
     "@types/jest": "^29.5.1",
