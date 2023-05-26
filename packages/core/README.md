@@ -15,7 +15,7 @@ yarn add @landingai-js/core
 ```javascript
 // 1. setup endpoint and credentials
 const apiInfo = {
-  endpoint: "https://predict.app.dev.landing.ai/inference/v1/predict?endpoint_id=<endpoint_id>",
+  endpoint: "https://predict.app.landing.ai/inference/v1/predict?endpoint_id=<endpoint_id>",
   key: "<api_key>",
   secret: "<api_secret>",
 }

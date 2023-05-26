@@ -10,7 +10,7 @@ import { useState } from "react";
 import { InferenceContext, InferenceResult, PhotoCollector } from "@landingai-js/react";
 
 const apiInfo = {
-  endpoint: `https://predict.app.dev.landing.ai/inference/v1/predict?endpoint_id=<endpoint_id>`,
+  endpoint: `https://predict.app.landing.ai/inference/v1/predict?endpoint_id=<endpoint_id>`,
   key: "<api_key>",
   secret: "<api_secret>",
 };
