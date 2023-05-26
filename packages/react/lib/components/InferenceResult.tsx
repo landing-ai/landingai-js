@@ -1,5 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { isDark, countBy, predictionsToAnnotations, Annotation, getInferenceResult } from "@landingai-js/core";
+import {
+  isDark,
+  countBy,
+  predictionsToAnnotations,
+  Annotation,
+  getInferenceResult,
+  InferenceResult as InferenceResultType
+} from "@landingai-js/core";
 import styles from "./index.module.css";
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useInferenceContext } from "../context/InferenceContext";
@@ -14,7 +21,15 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
   const apiInfo = useInferenceContext();
 
   const imageRef = useRef<HTMLImageElement>(null);
-  const [annotations, setAnnotations] = useState<Annotation[]>([]);
+
+  // inference results
+  const [inferenceResult, setInferenceResult] = useState<InferenceResultType>();
+  const annotations = useMemo(() => {
+    return predictionsToAnnotations(inferenceResult?.backbonepredictions);
+  }, [inferenceResult]);
+  const className = useMemo(() => {
+    return inferenceResult?.predictions?.labelName ?? '';
+  }, [inferenceResult]);
 
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [preview, setPreview] = useState<string>();
@@ -32,7 +47,7 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
       try {
         setIsLoading(true);
         const result = await getInferenceResult(apiInfo, image);
-        setAnnotations(predictionsToAnnotations(result.backbonepredictions));
+        setInferenceResult(result);
       } catch (err) {
         console.error(err);
       } finally {
@@ -66,6 +81,7 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
             Your image will be displayed here.
           </div>
         )}
+        {/* Image and annotations like boxes / segemtation_mask */}
         {preview && (
           <div className={styles.imageContainer}>
             <img
@@ -88,9 +104,11 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
             {isLoading && <div className={styles.ring}></div>}
           </div>
         )}
+        {/* Summaries of predictions */}
         {preview && !isLoading && <div className={styles.inferenceSummary}>
-          <p>Total: {annotations.length} objects detected</p>
-          {annotationCounts.map(({ labelName, count }) => (
+          <div>Class: {className}</div>
+          {!!inferenceResult?.backbonepredictions && <div>Total: {annotations.length} objects detected</div>}
+          {!!inferenceResult?.backbonepredictions && annotationCounts.map(({ labelName, count }) => (
             <div className={styles.labelNameCount} key={labelName}>
               <span>Number of {labelName}</span>
               <span>{count}</span>

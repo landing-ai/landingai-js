@@ -6,7 +6,6 @@
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   margin-bottom: 0.5rem;
 }
 
@@ -72,10 +71,15 @@
   border-radius: 0.25rem;
 }
 
-.container {
+.photoCollectorContainer {
   position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.photoCollectorButton {
+  height: 3rem;
+  font-size: 1rem;
 }
 
 .fileInput {

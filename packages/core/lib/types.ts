@@ -105,5 +105,16 @@ export type Annotation = {
  * Inference API response
  */
 export type InferenceResult = {
-  backbonepredictions: PredictionsMap;
+  /**
+   * backbone predictions. e.g. bounding boxes
+   */
+  backbonepredictions: PredictionsMap | null;
+  /**
+   * prediction on the image
+   */
+  predictions: {
+    labelIndex: number;
+    labelName: string;
+    score: number;
+  }
 };

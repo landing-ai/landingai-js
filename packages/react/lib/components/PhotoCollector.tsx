@@ -22,8 +22,8 @@ export const PhotoCollector: React.FC<PhotoCollectorProps> = (props) => {
   };
 
   return (
-    <div className={styles.container}>
-      <button>Select a photo</button>
+    <div className={styles.photoCollectorContainer}>
+      <button className={styles.photoCollectorButton}>Select a photo</button>
       <input onChange={capture} className={styles.fileInput} type="file" accept="image/*" />
     </div>
   );
