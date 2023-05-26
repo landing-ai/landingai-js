@@ -16,16 +16,29 @@
 <li><a href="../modules/_landingai_js_core.html">@landingai-js/core</a></li>
 <li><a href="_landingai_js_core.InferenceResult.html">InferenceResult</a></li></ul>
 <h1>Type alias InferenceResult</h1></div>
-<div class="tsd-signature"><span class="tsd-kind-type-alias">Inference<wbr/>Result</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">backbonepredictions</span><span class="tsd-signature-symbol">: </span><a href="_landingai_js_core.PredictionsMap.html" class="tsd-signature-type tsd-kind-type-alias">PredictionsMap</a><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
+<div class="tsd-signature"><span class="tsd-kind-type-alias">Inference<wbr/>Result</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">backbonepredictions</span><span class="tsd-signature-symbol">: </span><a href="_landingai_js_core.PredictionsMap.html" class="tsd-signature-type tsd-kind-type-alias">PredictionsMap</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">predictions</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span><span class="tsd-kind-property">labelIndex</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">labelName</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>        </span><span class="tsd-kind-property">score</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
 <div class="tsd-comment tsd-typography"><p>Inference API response</p>
 </div>
 <div class="tsd-type-declaration">
 <h4>Type declaration</h4>
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
-<h5><span class="tsd-kind-property">backbonepredictions</span><span class="tsd-signature-symbol">: </span><a href="_landingai_js_core.PredictionsMap.html" class="tsd-signature-type tsd-kind-type-alias">PredictionsMap</a></h5></li></ul></div><aside class="tsd-sources">
+<h5><span class="tsd-kind-property">backbonepredictions</span><span class="tsd-signature-symbol">: </span><a href="_landingai_js_core.PredictionsMap.html" class="tsd-signature-type tsd-kind-type-alias">PredictionsMap</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+<div class="tsd-comment tsd-typography"><p>backbone predictions. e.g. bounding boxes</p>
+</div></li>
+<li class="tsd-parameter">
+<h5><span class="tsd-kind-property">predictions</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">labelIndex</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">labelName</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">score</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></h5>
+<div class="tsd-comment tsd-typography"><p>prediction on the image</p>
+</div>
+<ul class="tsd-parameters">
+<li class="tsd-parameter">
+<h5><span class="tsd-kind-property">label<wbr/>Index</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5></li>
+<li class="tsd-parameter">
+<h5><span class="tsd-kind-property">label<wbr/>Name</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5></li>
+<li class="tsd-parameter">
+<h5><span class="tsd-kind-property">score</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5></li></ul></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/landing-ai/landingai-js/blob/92c5b15/packages/core/lib/types.ts#L107">lib/types.ts:107</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/landing-ai/landingai-js/blob/ecdb455/packages/core/lib/types.ts#L107">lib/types.ts:107</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
