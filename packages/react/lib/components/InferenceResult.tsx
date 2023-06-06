@@ -3,7 +3,8 @@ import {
   predictionsToAnnotations,
   Annotation,
   getInferenceResult,
-  InferenceResult as InferenceResultType
+  InferenceResult as InferenceResultType,
+  ApiError
 } from 'landingai';
 import styles from './index.module.css';
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -15,7 +16,10 @@ export interface InferenceResultProps {
    * Show labels for predicted annotations. Default is false.
    */
   showLabels?: boolean;
-  onPredictError?: (err: any) => void;
+  /**
+   * Called when there is predict error.
+   */
+  onPredictError?: (err: ApiError) => void;
 }
 
 /**
@@ -62,7 +66,7 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
         const result = await getInferenceResult(apiInfo, image);
         setInferenceResult(result);
       } catch (err) {
-        onPredictError?.(err);
+        onPredictError?.(err as any);
       } finally {
         setIsLoading(false);
       }
