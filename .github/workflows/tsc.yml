@@ -1,0 +1,33 @@
+name: TSC
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/tsc.yml'
+      - 'packages/**'
+      - 'tsconfig.json'
+      - 'package.json'
+      - 'yarn.lock'
+
+jobs:
+  ci-tsc:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Checkout"
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: "Use NodeJS 16"
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+        cache: 'yarn'
+
+    - name: "Install dependencies"
+      run: |
+        yarn install
+
+    - name: "TSC"
+      run: |
+        yarn tsc
