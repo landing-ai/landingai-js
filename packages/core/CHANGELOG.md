@@ -5,12 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.0.16](https://github.com/landing-ai/landingai-js/compare/v1.0.15...v1.0.16) (2023-06-06)
 
-**Note:** Version bump only for package landingai-js
-
-
-
-
-
-## [1.0.15](https://github.com/landing-ai/landingai-js/compare/v1.0.14...v1.0.15) (2023-06-06)
-
-**Note:** Version bump only for package landingai-js
+**Note:** Version bump only for package landingai
