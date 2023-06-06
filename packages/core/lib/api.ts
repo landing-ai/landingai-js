@@ -34,19 +34,19 @@ export const getInferenceResult = async (apiInfo: ApiInfo, image: Blob): Promise
     }
   );
   const body: any = await result.text();
+  let bodyJson: any;
+  try {
+    bodyJson = JSON.parse(body);
+  } catch (e) {
+    // ignore error
+  }
 
   if (result.status !== 200) {
-    let bodyJson: any;
-    try {
-      bodyJson = JSON.parse(body);
-    } catch (e) {
-      // ignore error
-    }
     const error = new ApiError(bodyJson?.message ?? body);
     error.status = result.status;
     error.statusText = result.statusText;
     error.body = bodyJson;
     throw error;
   }
-  return body as any;
+  return bodyJson as any;
 };
