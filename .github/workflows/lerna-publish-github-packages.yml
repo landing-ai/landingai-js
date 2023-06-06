@@ -39,10 +39,6 @@ jobs:
       run: |
         yarn build
 
-    - name: "Generate docs"
-      run: |
-        yarn build
-
     - name: Bump Version
       env:
         GH_TOKEN: ${{ secrets.GH_PAT }}
