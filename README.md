@@ -16,9 +16,9 @@ We've provided some examples in Codesandbox to focus on ease of use.
 ## Install the libraries
 
 ```bash
-npm install landingai @landingai/react
+npm install landingai landingai-react
 # OR
-yarn add landingai @landingai/react
+yarn add landingai landingai-react
 ```
 
 ## Quick Start
@@ -41,7 +41,7 @@ Collect photo and run inference using the endpoint you created in LandingLens:
 ```jsx
 import React from 'react';
 import { useState } from "react";
-import { InferenceContext, InferenceResult, PhotoCollector } from "@landingai/react";
+import { InferenceContext, InferenceResult, PhotoCollector } from "landingai-react";
 
 const apiInfo = {
   endpoint: `https://predict.app.landing.ai/inference/v1/predict?endpoint_id=<FILL_YOUR_INFERENCE_ENDPOINT_ID>`,

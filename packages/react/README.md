@@ -1,4 +1,4 @@
-# `@landingai/react`
+# `landingai-react`
 
 React components to fetch and render predictions from an image.
 
@@ -7,7 +7,7 @@ React components to fetch and render predictions from an image.
 ```jsx
 import React from 'react';
 import { useState } from "react";
-import { InferenceContext, InferenceResult, PhotoCollector } from "@landingai/react";
+import { InferenceContext, InferenceResult, PhotoCollector } from "landingai-react";
 
 const apiInfo = {
   endpoint: `https://predict.app.landing.ai/inference/v1/predict?endpoint_id=<endpoint_id>`,
