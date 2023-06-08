@@ -16,13 +16,18 @@ export const getInferenceResult = async (apiInfo: ApiInfo, image: Blob): Promise
   const formData = new FormData();
   formData.append('file', image);
 
+  console.log('apiInfo', apiInfo);
+  if (!apiInfo.key) {
+    throw new Error('Missing apiInfo.key is required');
+  }
+
   const result = await fetch(
     apiInfo.endpoint,
     {
       method: 'POST',
       headers: {
         Accept: '*/*',
-        ...((apiInfo.key && apiInfo.secret)
+        ...(apiInfo.key
           ? {
             apikey: apiInfo.key,
             apisecret: apiInfo.secret,

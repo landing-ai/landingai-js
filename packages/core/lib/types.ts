@@ -8,8 +8,10 @@ export interface ApiInfo {
   key: string;
   /**
    * Landing AI API secret of a particular LandingLens user. See https://support.landing.ai/docs/api-key-and-api-secret
+   *
+   * If your API key is prefixed with `land_sk_`, the secret is not required
    */
-  secret: string;
+  secret?: string;
   /**
    * The cloud deployment endpoint. See https://support.landing.ai/docs/cloud-deployment
    */
