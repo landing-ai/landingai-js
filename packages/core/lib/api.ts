@@ -16,13 +16,8 @@ export const getInferenceResult = async (apiInfo: ApiInfo, image: Blob): Promise
   const formData = new FormData();
   formData.append('file', image);
 
-  console.log('apiInfo', apiInfo);
-  if (!apiInfo.key) {
-    throw new Error('Missing apiInfo.key is required');
-  }
-
   const result = await fetch(
-    apiInfo.endpoint,
+    apiInfo.endpoint + `&device_type=${process.env.LIB_DEVICE_TYPE ?? 'jslib'}`,
     {
       method: 'POST',
       headers: {
