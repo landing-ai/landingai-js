@@ -1,4 +1,4 @@
-import { ApiInfo, InferenceResult } from './types';
+import { ApiInfo, InferenceResult, ServerSegmentationPredictions } from './types';
 
 export class ApiError extends Error {
   body: any;
@@ -37,6 +37,24 @@ export const getInferenceResult = async (apiInfo: ApiInfo, image: Blob): Promise
   let bodyJson: any;
   try {
     bodyJson = JSON.parse(body);
+
+    // convert segmentation prediction fields to camel case
+    const bitmaps = (bodyJson as InferenceResult).predictions?.bitmaps
+      ?? ((bodyJson as InferenceResult).backbonepredictions as ServerSegmentationPredictions)?.bitmaps;
+    if (bitmaps) {
+      for (const key in bitmaps) {
+        const {
+          score,
+          label_name: labelName,
+          label_index: labelIndex,
+          defect_id: defectId,
+          bitmap,
+        } = bitmaps[key] as any;
+
+        bitmaps[key] = { score, labelName, labelIndex, defectId, bitmap };
+      }
+    }
+
   } catch (e) {
     // ignore error
   }

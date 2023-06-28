@@ -29,6 +29,17 @@ export type Coordinates = {
 };
 
 /**
+ * 
+ */
+export type SegmentationBitmap = {
+  score: number;
+  labelName: string;
+  labelIndex: number;
+  defectId: number;
+  bitmap: string;
+};
+
+/**
  * The base/parent prediction class that stores the common shared properties of a prediction.
  */
 export type BasePrediction = {
@@ -36,7 +47,6 @@ export type BasePrediction = {
    * The confidence score of this prediction.
    */
   score: number;
-  coordinates: Coordinates;
   /**
    * The predicted label name.
    */
@@ -61,7 +71,7 @@ export type ObjectDetectionPrediction = BasePrediction & {
  * It includes a predicted segmentation mask, confidence score and the predicted label.
  */
 export type SegmentationPrediction = BasePrediction & {
-  // TODO: add more attributes here
+  bitmap: string;
 };
 
 /**
@@ -94,6 +104,10 @@ export type Annotation = {
    */
   coordinates?: Coordinates;
   /**
+   * The predicted segmentation mask
+   */
+  bitmap?: string;
+  /**
    * The color of the annotation
    */
   color: string;
@@ -103,6 +117,16 @@ export type Annotation = {
   name: string;
 };
 
+export type ServerSegmentationPredictions = {
+  labelIndex: number;
+  labelName: string;
+  score: number;
+  /**
+   * Segmentation bitmaps
+   */
+  bitmaps?: Record<string, SegmentationBitmap> | null,
+};
+
 /**
  * Inference API response
  */
@@ -110,13 +134,24 @@ export type InferenceResult = {
   /**
    * backbone predictions. e.g. bounding boxes
    */
-  backbonepredictions: PredictionsMap | null;
+  backbonepredictions: PredictionsMap | ServerSegmentationPredictions | null;
   /**
    * prediction on the image
    */
-  predictions: {
-    labelIndex: number;
-    labelName: string;
-    score: number;
-  }
+  predictions: ServerSegmentationPredictions,
+  /**
+   * Inference type for the image.
+   * 
+   * For object detection, segmentation and classification projects, this field will be 'ClassificationPrediction'
+   * for the image, stating if the image is OK (no annotations detected) or NG (has annotations detected).
+   *
+   * In this case, please use backbonetype to differentiate the two types of projects.
+   * 
+   * For visual prompting projects, this field will be 'SegmentationPrediction'.
+   */
+  type: 'SegmentationPrediction' | 'ClassificationPrediction';
+  /**
+   * Prediction type. Only for object detection, segmentation projects.
+   */
+  backbonetype: 'SegmentationPrediction' | 'ObjectDetectionPrediction';
 };

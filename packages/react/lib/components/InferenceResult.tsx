@@ -1,14 +1,13 @@
 import {
-  isDark,
   predictionsToAnnotations,
-  Annotation,
   getInferenceResult,
   InferenceResult as InferenceResultType,
   ApiError
 } from 'landingai';
 import styles from './index.module.css';
-import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useInferenceContext } from '../context/InferenceContext';
+import { AnnotationComponent, LabelName } from './Annotation';
 
 export interface InferenceResultProps {
   image?: Blob;
@@ -38,7 +37,7 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
   // inference results
   const [inferenceResult, setInferenceResult] = useState<InferenceResultType>();
   const annotations = useMemo(() => {
-    return predictionsToAnnotations(inferenceResult?.backbonepredictions);
+    return predictionsToAnnotations(inferenceResult);
   }, [inferenceResult]);
   const className = useMemo(() => {
     return inferenceResult?.predictions?.labelName ?? '';
@@ -124,82 +123,32 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
         )}
         {/* Summaries of predictions */}
         {preview && !isLoading && !!inferenceResult && <div className={styles.inferenceSummary}>
-          {!inferenceResult?.backbonepredictions && <div>Class: {className}</div>}
-          {!!inferenceResult?.backbonepredictions && <div>Total: {annotations.length} objects detected</div>}
-          {!!inferenceResult?.backbonepredictions && annotationCounts.map(({ name, count, color }) => (
-            <div className={styles.labelNameCount} key={name}>
-              <span>Number of <LabelName name={name} color={color} /></span>
-              <span>{count}</span>
-            </div>
-          ))}
+          {inferenceResult?.type === 'ClassificationPrediction' && !inferenceResult.backbonetype && <div>Class: {className}</div>}
+          {inferenceResult.backbonetype === 'ObjectDetectionPrediction' && (
+            <>
+              <div>Total: {annotations.length} objects detected</div>
+              {annotationCounts.map(({ name, count, color }) => (
+                <div className={styles.labelNameCount} key={name}>
+                  <span>Number of <LabelName name={name} color={color} /></span>
+                  <span>{count}</span>
+                </div>
+              ))}
+            </>
+          )}
+          {(inferenceResult?.type === 'SegmentationPrediction' || inferenceResult.backbonetype === 'SegmentationPrediction') && (
+            <>
+              <div>Legend</div>
+              <div className={styles.legend}>
+                {annotationCounts.map(({ name, color }) => (
+                  <div className={styles.labelNameCount} key={name}>
+                    <span><LabelName name={name} color={color} /></span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>}
       </div>
     </>
   );
 };
-
-interface LabelNameProps {
-  name: string;
-  color: string;
-}
-
-function LabelName(props: LabelNameProps) {
-  const { name, color } = props;
-  const textColor = isDark(color) ? 'white': 'black';
-  return (
-    <span style={{ backgroundColor: color, color: textColor, borderColor: textColor }} className={styles.labelName}>
-      {name}
-    </span>
-  );
-}
-
-interface AnnotationComponentProps {
-  annotation: Annotation;
-  imageWidth: number;
-  imageHeight: number;
-  showLabel?: boolean;
-}
-
-function AnnotationComponent(props: AnnotationComponentProps) {
-  const { annotation, imageWidth, imageHeight, showLabel = false } = props;
-
-  const style = useMemo(() => {
-    const { coordinates, color } = annotation;
-    // TODO: support segmentation as well
-    const { xmin, xmax, ymin, ymax } = coordinates!;
-    const width = xmax - xmin;
-    const height = ymax - ymin;
-
-    return {
-      left: `${(100 * xmin) / imageWidth}%`,
-      top: `${(100 * ymin) / imageHeight}%`,
-      width: `${(100 * width) / imageWidth}%`,
-      height: `${(100 * height) / imageHeight}%`,
-      borderColor: color,
-    } as React.CSSProperties;
-  }, [annotation, imageHeight, imageWidth]);
-
-  const textBoundingRectStyles = useMemo(() => {
-    const { color } = annotation;
-    return {
-      left: 0,
-      top: -4,
-      backgroundColor: color,
-      color: isDark(color) ? 'white' : 'black',
-      outlineColor: isDark(color) ? 'white' : 'black',
-      transform: 'translateY(-100%)',
-    } as CSSProperties;
-  }, [annotation, imageHeight, imageWidth]);
-
-  return (
-    <>
-      <div className={styles.annotation} style={style}>
-        {showLabel && (
-          <div className={styles.text} style={textBoundingRectStyles}>
-            {annotation.name}
-          </div>
-        )}
-      </div>
-    </>
-  );
-}
