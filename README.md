@@ -46,7 +46,6 @@ import { InferenceContext, InferenceResult, PhotoCollector } from "landingai-rea
 const apiInfo = {
   endpoint: `https://predict.app.landing.ai/inference/v1/predict?endpoint_id=<FILL_YOUR_INFERENCE_ENDPOINT_ID>`,
   key: "<FILL_YOUR_API_KEY>",
-  secret: "<FILL_YOUR_API_SECRET>",
 };
 
 export default function App() {
