@@ -30,7 +30,7 @@ export const PhotoCollector: React.FC<PhotoCollectorProps> = (props) => {
   return (
     <div className={styles.photoCollectorContainer} aria-label="Select a photo">
       <button className={styles.photoCollectorButton}>Select a photo</button>
-      <input onChange={capture} className={styles.fileInput} type="file" accept="image/*" data-testid="select-photo-input" />
+      <input onChange={capture} className={styles.fileInput} type="file" accept="image/*;capture=camera" data-testid="select-photo-input" />
     </div>
   );
 };
