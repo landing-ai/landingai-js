@@ -2,16 +2,16 @@
   <img width="100" height="100" src="https://github.com/landing-ai/landingai-python/raw/main/assets/avi-logo.png">
 </p>
 
-# LandingLens JS SDK
-The LandingLens JS SDK contains the LandingLens development library and examples that show how to integrate your app with LandingLens in a variety of scenarios.
+# LandingLens JavaScript API Library
+The LandingLens JavaScript AIP library contains the LandingLens development library and examples that show how to integrate your app with LandingLens in a variety of scenarios.
 
-We've provided some examples in Codesandbox to focus on ease of use.
+We've provided some examples in CodeSandbox to focus on ease of use.
 
 <!-- Generated using https://www.tablesgenerator.com/markdown_tables -->
 
 | Example | Description | Type |
 |---|---|---|
-| [Poker Card Suit Identification](https://codesandbox.io/s/eloquent-tesla-yzsbsk?file=/src/App.js) | This example shows how to use an object detection model from LandingLens to detect suits on playing cards. | Codesandbox |
+| [Poker Card Suit Identification](https://codesandbox.io/s/eloquent-tesla-yzsbsk?file=/src/App.js) | This example shows how to use an Object Detection model from LandingLens to detect suits on playing cards. | CodeSandbox |
 
 ## Install the libraries
 
@@ -27,16 +27,16 @@ yarn add landingai landingai-react
 
 This library needs to communicate with the LandingLens platform to perform certain functions. (For example, the `getInferenceResult` API calls the HTTP endpoint of your deployed model). To enable communication with LandingLens, you will need the following information:
 
-1. The **Endpoint ID** of your deployed model in LandingLens. You can find this on the Deploy page in LandingLens.
-2. The **API Key** and **API Secret** for the LandingLens organization that has the model you want to deploy. To learn how to generate these credentials, go [here](https://support.landing.ai/docs/api-key-and-api-secret).
+- The **Endpoint ID** of your deployed model in LandingLens. You can find this on the Deploy page in LandingLens.
+- The **API Key** for the LandingLens organization that has the model you want to deploy. To learn how to generate these credentials, go [here](https://support.landing.ai/docs/api-key-and-api-secret).
 
-### Collect Photo and Run Inference
-Collect photo and run inference using the endpoint you created in LandingLens:
+### Collect Images and Run Inference
+Collect images and run inference using the endpoint you created in LandingLens:
 
-- Install the JS libraries.
-- Construct an `apiInfo` object and pass it to `<InferenceContext.Provider>`.
-- Render the photo collector to get image blob.
-- Render inference result component to visualize predictions.
+1. Install the JS libraries.
+2. Construct an `apiInfo` object and pass it to `<InferenceContext.Provider>`.
+3. Render the image collector to get image blob.
+4. Render the inference result component to visualize predictions.
 
 ```jsx
 import React from 'react';
@@ -64,4 +64,4 @@ See a **working example** in [here](https://codesandbox.io/s/eloquent-tesla-yzsb
 
 ## Documentation
 
--  [Landing AI JS Library API Reference](https://landing-ai.github.io/landingai-js/)
+-  [Landing AI JavaScript API Library Reference](https://landing-ai.github.io/landingai-js/)
