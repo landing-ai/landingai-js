@@ -1,6 +1,6 @@
 {
   "name": "landingai-react",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "> TODO: description",
   "author": "Lan Tian <tian.lan@landing.ai>",
   "homepage": "https://github.com/landing-ai/landingai-js#readme",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "image-conversion": "^2.1.1",
-    "landingai": "^1.0.22"
+    "landingai": "^1.0.24"
   },
   "devDependencies": {
     "@testing-library/react": "^12.1.5",
