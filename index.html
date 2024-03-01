@@ -16,8 +16,8 @@
   <img width="100" height="100" src="https://github.com/landing-ai/landingai-python/raw/main/assets/avi-logo.png">
 </p>
 
-<a id="md:landinglens-js-sdk" class="tsd-anchor"></a><h1><a href="#md:landinglens-js-sdk">LandingLens JS SDK</a></h1><p>The LandingLens JS SDK contains the LandingLens development library and examples that show how to integrate your app with LandingLens in a variety of scenarios.</p>
-<p>We&#39;ve provided some examples in Codesandbox to focus on ease of use.</p>
+<a id="md:landinglens-javascript-api-library" class="tsd-anchor"></a><h1><a href="#md:landinglens-javascript-api-library">LandingLens JavaScript API Library</a></h1><p>The LandingLens JavaScript AIP library contains the LandingLens development library and examples that show how to integrate your app with LandingLens in a variety of scenarios.</p>
+<p>We&#39;ve provided some examples in CodeSandbox to focus on ease of use.</p>
 <!-- Generated using https://www.tablesgenerator.com/markdown_tables -->
 
 <table>
@@ -30,29 +30,29 @@
 </thead>
 <tbody><tr>
 <td><a href="https://codesandbox.io/s/eloquent-tesla-yzsbsk?file=/src/App.js">Poker Card Suit Identification</a></td>
-<td>This example shows how to use an object detection model from LandingLens to detect suits on playing cards.</td>
-<td>Codesandbox</td>
+<td>This example shows how to use an Object Detection model from LandingLens to detect suits on playing cards.</td>
+<td>CodeSandbox</td>
 </tr>
 </tbody></table>
 <a id="md:install-the-libraries" class="tsd-anchor"></a><h2><a href="#md:install-the-libraries">Install the libraries</a></h2><pre><code class="language-bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">landingai</span><span class="hl-1"> </span><span class="hl-2">landingai-react</span><br/><span class="hl-3"># OR</span><br/><span class="hl-0">yarn</span><span class="hl-1"> </span><span class="hl-2">add</span><span class="hl-1"> </span><span class="hl-2">landingai</span><span class="hl-1"> </span><span class="hl-2">landingai-react</span>
 </code><button>Copy</button></pre>
 <a id="md:quick-start" class="tsd-anchor"></a><h2><a href="#md:quick-start">Quick Start</a></h2><a id="md:prerequisites" class="tsd-anchor"></a><h3><a href="#md:prerequisites">Prerequisites</a></h3><p>This library needs to communicate with the LandingLens platform to perform certain functions. (For example, the <code>getInferenceResult</code> API calls the HTTP endpoint of your deployed model). To enable communication with LandingLens, you will need the following information:</p>
-<ol>
-<li>The <strong>Endpoint ID</strong> of your deployed model in LandingLens. You can find this on the Deploy page in LandingLens.</li>
-<li>The <strong>API Key</strong> and <strong>API Secret</strong> for the LandingLens organization that has the model you want to deploy. To learn how to generate these credentials, go <a href="https://support.landing.ai/docs/api-key-and-api-secret">here</a>.</li>
-</ol>
-<a id="md:collect-photo-and-run-inference" class="tsd-anchor"></a><h3><a href="#md:collect-photo-and-run-inference">Collect Photo and Run Inference</a></h3><p>Collect photo and run inference using the endpoint you created in LandingLens:</p>
 <ul>
+<li>The <strong>Endpoint ID</strong> of your deployed model in LandingLens. You can find this on the Deploy page in LandingLens.</li>
+<li>The <strong>API Key</strong> for the LandingLens organization that has the model you want to deploy. To learn how to generate these credentials, go <a href="https://support.landing.ai/docs/api-key-and-api-secret">here</a>.</li>
+</ul>
+<a id="md:collect-images-and-run-inference" class="tsd-anchor"></a><h3><a href="#md:collect-images-and-run-inference">Collect Images and Run Inference</a></h3><p>Collect images and run inference using the endpoint you created in LandingLens:</p>
+<ol>
 <li>Install the JS libraries.</li>
 <li>Construct an <code>apiInfo</code> object and pass it to <code>&lt;InferenceContext.Provider&gt;</code>.</li>
-<li>Render the photo collector to get image blob.</li>
-<li>Render inference result component to visualize predictions.</li>
-</ul>
+<li>Render the image collector to get image blob.</li>
+<li>Render the inference result component to visualize predictions.</li>
+</ol>
 <pre><code class="language-jsx"><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-5">React</span><span class="hl-1"> </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;react&#39;</span><span class="hl-1">;</span><br/><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">useState</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&quot;react&quot;</span><span class="hl-1">;</span><br/><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-5">InferenceContext</span><span class="hl-1">, </span><span class="hl-5">InferenceResult</span><span class="hl-1">, </span><span class="hl-5">PhotoCollector</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&quot;landingai-react&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">apiInfo</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-5">endpoint:</span><span class="hl-1"> </span><span class="hl-2">`https://predict.app.landing.ai/inference/v1/predict?endpoint_id=&lt;FILL_YOUR_INFERENCE_ENDPOINT_ID&gt;`</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-5">key:</span><span class="hl-1"> </span><span class="hl-2">&quot;&lt;FILL_YOUR_API_KEY&gt;&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">};</span><br/><br/><span class="hl-4">export</span><span class="hl-1"> </span><span class="hl-4">default</span><span class="hl-1"> </span><span class="hl-6">function</span><span class="hl-1"> </span><span class="hl-0">App</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-6">const</span><span class="hl-1"> [</span><span class="hl-7">image</span><span class="hl-1">, </span><span class="hl-7">setImage</span><span class="hl-1">] = </span><span class="hl-0">useState</span><span class="hl-1">();</span><br/><br/><span class="hl-1">  </span><span class="hl-4">return</span><span class="hl-1"> (</span><br/><span class="hl-1">    </span><span class="hl-8">&lt;</span><span class="hl-9">InferenceContext.Provider</span><span class="hl-1"> </span><span class="hl-10">value</span><span class="hl-1">=</span><span class="hl-6">{</span><span class="hl-5">apiInfo</span><span class="hl-6">}</span><span class="hl-8">&gt;</span><br/><span class="hl-1">      </span><span class="hl-8">&lt;</span><span class="hl-9">PhotoCollector</span><span class="hl-1"> </span><span class="hl-10">setImage</span><span class="hl-1">=</span><span class="hl-6">{</span><span class="hl-5">setImage</span><span class="hl-6">}</span><span class="hl-1"> </span><span class="hl-8">/&gt;</span><br/><span class="hl-1">      </span><span class="hl-8">&lt;</span><span class="hl-9">InferenceResult</span><span class="hl-1"> </span><span class="hl-10">image</span><span class="hl-1">=</span><span class="hl-6">{</span><span class="hl-5">image</span><span class="hl-6">}</span><span class="hl-1"> </span><span class="hl-8">/&gt;</span><br/><span class="hl-1">    </span><span class="hl-8">&lt;/</span><span class="hl-9">InferenceContext.Provider</span><span class="hl-8">&gt;</span><br/><span class="hl-1">  );</span><br/><span class="hl-1">}</span>
 </code><button>Copy</button></pre>
 <p>See a <strong>working example</strong> in <a href="https://codesandbox.io/s/eloquent-tesla-yzsbsk?file=/src/App.js">here</a>.</p>
 <a id="md:documentation" class="tsd-anchor"></a><h2><a href="#md:documentation">Documentation</a></h2><ul>
-<li><a href="https://landing-ai.github.io/landingai-js/">Landing AI JS Library API Reference</a></li>
+<li><a href="https://landing-ai.github.io/landingai-js/">Landing AI JavaScript API Library Reference</a></li>
 </ul>
 </div></div>
 <div class="col-sidebar">
@@ -76,7 +76,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#md:landinglens-js-sdk"><span>Landing<wbr/>Lens JS SDK</span></a></li>
+<li><a href="#md:landinglens-javascript-api-library"><span>Landing<wbr/>Lens <wbr/>Java<wbr/>Script API <wbr/>Library</span></a></li>
 <li>
 <ul>
 <li><a href="#md:install-the-libraries"><span>Install the libraries</span></a></li>
@@ -84,7 +84,7 @@
 <li>
 <ul>
 <li><a href="#md:prerequisites"><span>Prerequisites</span></a></li>
-<li><a href="#md:collect-photo-and-run-inference"><span>Collect <wbr/>Photo and <wbr/>Run <wbr/>Inference</span></a></li></ul></li>
+<li><a href="#md:collect-images-and-run-inference"><span>Collect <wbr/>Images and <wbr/>Run <wbr/>Inference</span></a></li></ul></li>
 <li><a href="#md:documentation"><span>Documentation</span></a></li></ul></li></ul></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="index.html" class="current"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4-path"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)" id="icon-4-text"></path></svg><span>Landing AI JS <wbr/>Library -<wbr/> v1.0.0</span></a>
