@@ -1,6 +1,6 @@
 # `landingai`
 
-Core functions for getting predictions from Landing AI cloud deployment endpoints and rendering predictions.
+Core functions for getting predictions from LandingLens cloud deployment endpoints and rendering predictions.
 
 ```bash
 npm install landingai
@@ -31,4 +31,4 @@ const annotations = predictionsToAnnotations(backbonepredictions);
 **References**
 
 * [How to get an endpoint](https://support.landing.ai/docs/cloud-deployment)
-* [How to get api key and secret](https://support.landing.ai/docs/api-key-and-api-secret)
+* [How to get an API Key](https://support.landing.ai/docs/api-key)
