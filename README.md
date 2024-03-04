@@ -2,8 +2,8 @@
   <img width="100" height="100" src="https://github.com/landing-ai/landingai-python/raw/main/assets/avi-logo.png">
 </p>
 
-# LandingLens JavaScript API Library
-The LandingLens JavaScript AIP library contains the LandingLens development library and examples that show how to integrate your app with LandingLens in a variety of scenarios.
+# LandingLens JavaScript Library
+The LandingLens JavaScript library contains the LandingLens development library and examples that show how to integrate your app with LandingLens in a variety of scenarios.
 
 We've provided some examples in CodeSandbox to focus on ease of use.
 
