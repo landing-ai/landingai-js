@@ -1,6 +1,6 @@
 {
   "name": "landingai-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Landing AI JS libraries",
   "main": "index.js",
   "repository": "git@github.com:landing-ai/landingai-js.git",
