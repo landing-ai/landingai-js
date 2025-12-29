@@ -1,13 +1,16 @@
 import { Annotation, InferenceResult, ObjectDetectionPrediction, SegmentationPrediction } from '../types';
-import { hexToRgb, palette } from './colorUtils';
+import { hexToRgb, palette as defaultPalette } from './colorUtils';
 
 /**
  * Convert server format predictions into a list of {@link Annotation} for easy rendering
+ * @param inferenceResult - The inference result from the API
+ * @param customPalette - Optional custom color palette to use instead of the default
  */
-export function predictionsToAnnotations(inferenceResult?: InferenceResult | null) {
+export function predictionsToAnnotations(inferenceResult?: InferenceResult | null, customPalette?: string[]) {
   if (!inferenceResult) {
     return [];
   }
+  const palette = customPalette || defaultPalette;
   const { backbonepredictions, predictions } = inferenceResult;
   const predictionsMap = predictions.bitmaps ?? backbonepredictions?.bitmaps ?? backbonepredictions;
   return Object.entries(predictionsMap || []).map(([id, prediction]) => ({
