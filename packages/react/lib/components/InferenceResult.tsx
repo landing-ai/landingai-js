@@ -16,6 +16,11 @@ export interface InferenceResultProps {
    */
   showLabels?: boolean;
   /**
+   * Custom color palette for annotations. If not provided, uses the default palette.
+   * Should be an array of hex color strings (e.g. ['#FF0000', '#00FF00', '#0000FF']).
+   */
+  customPalette?: string[];
+  /**
    * Called when there is predict error.
    */
   onPredictError?: (err: ApiError) => void;
@@ -29,7 +34,7 @@ export interface InferenceResultProps {
  * Also provides summaries of the results.
  */
 export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
-  const { image, showLabels = false, onPredictError } = props;
+  const { image, showLabels = false, customPalette, onPredictError } = props;
   const apiInfo = useInferenceContext();
 
   const imageRef = useRef<HTMLImageElement>(null);
@@ -37,8 +42,8 @@ export const InferenceResult: React.FC<InferenceResultProps> = (props) => {
   // inference results
   const [inferenceResult, setInferenceResult] = useState<InferenceResultType>();
   const annotations = useMemo(() => {
-    return predictionsToAnnotations(inferenceResult);
-  }, [inferenceResult]);
+    return predictionsToAnnotations(inferenceResult, customPalette);
+  }, [inferenceResult, customPalette]);
   const className = useMemo(() => {
     return inferenceResult?.predictions?.labelName ?? '';
   }, [inferenceResult]);
