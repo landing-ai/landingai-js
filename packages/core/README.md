@@ -30,5 +30,5 @@ const annotations = predictionsToAnnotations(backbonepredictions);
 
 **References**
 
-* [How to get an endpoint](https://support.landing.ai/docs/cloud-deployment)
-* [How to get an API Key](https://support.landing.ai/docs/api-key)
+* [How to get an endpoint](https://landinglens.docs.landing.ai/cloud-deployment)
+* [How to get an API Key](https://landinglens.docs.landing.ai/api-key)

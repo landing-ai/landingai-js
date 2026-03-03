@@ -28,7 +28,7 @@ yarn add landingai landingai-react
 This library needs to communicate with the LandingLens platform to perform certain functions. (For example, the `getInferenceResult` API calls the HTTP endpoint of your deployed model). To enable communication with LandingLens, you will need the following information:
 
 - The **Endpoint ID** of your deployed model in LandingLens. You can find this on the Deploy page in LandingLens.
-- The **API Key** for the LandingLens organization that has the model you want to deploy. To learn how to generate these credentials, go [here](https://support.landing.ai/docs/api-key-and-api-secret).
+- The **API Key** for the LandingLens organization that has the model you want to deploy. To learn how to generate these credentials, go [here](https://landinglens.docs.landing.ai/api-key).
 
 ### Collect Images and Run Inference
 Collect images and run inference using the endpoint you created in LandingLens:
