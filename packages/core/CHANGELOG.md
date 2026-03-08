@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/landing-ai/landingai-js/compare/v1.1.0...v1.1.1) (2026-03-08)
+
+
+### Bug Fixes
+
+* add null to backbonetype and add missing fields on InferenceResult ([#32](https://github.com/landing-ai/landingai-js/issues/32)) ([4604ec1](https://github.com/landing-ai/landingai-js/commit/4604ec16749ff68c02cf464b7f74c17833c3de25))
+
+
+
+
+
 # [1.1.0](https://github.com/landing-ai/landingai-js/compare/v1.0.25...v1.1.0) (2026-03-08)
 
 
