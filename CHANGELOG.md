@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/landing-ai/landingai-js/compare/v1.0.25...v1.1.0) (2026-03-08)
+
+
+### Features
+
+* updated links to LandingLens documentation ([#31](https://github.com/landing-ai/landingai-js/issues/31)) ([0db6564](https://github.com/landing-ai/landingai-js/commit/0db65646ad24838ebd3679e3fafaff68f9b5f20f))
+
+
+
+
+
 ## [1.0.24](https://github.com/landing-ai/landingai-js/compare/v1.0.23...v1.0.24) (2024-03-01)
 
 **Note:** Version bump only for package landingai-js
