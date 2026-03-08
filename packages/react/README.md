@@ -29,8 +29,8 @@ export default function App() {
 
 **References**
 
-* [How to get an endpoint](https://support.landing.ai/docs/cloud-deployment)
-* [How to get api key and secret](https://support.landing.ai/docs/api-key-and-api-secret)
+* [How to get an endpoint](https://landinglens.docs.landing.ai/cloud-deployment)
+* [How to get api key and secret](https://landinglens.docs.landing.ai/api-key)
 
 
 ## Examples

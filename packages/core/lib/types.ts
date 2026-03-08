@@ -3,17 +3,17 @@
  */
 export interface ApiInfo {
   /**
-   * Landing AI API key of a particular LandingLens user. See https://support.landing.ai/docs/api-key-and-api-secret
+   * Landing AI API key of a particular LandingLens user. See https://landinglens.docs.landing.ai/api-key
    */
   key: string;
   /**
-   * Landing AI API secret of a particular LandingLens user. See https://support.landing.ai/docs/api-key-and-api-secret
+   * Landing AI API secret of a particular LandingLens user. See https://landinglens.docs.landing.ai/api-key
    *
    * If your API key is prefixed with `land_sk_`, the secret is not required
    */
   secret?: string;
   /**
-   * The cloud deployment endpoint. See https://support.landing.ai/docs/cloud-deployment
+   * The cloud deployment endpoint. See https://landinglens.docs.landing.ai/cloud-deployment
    */
   endpoint: string;
 }
@@ -53,7 +53,7 @@ export type BasePrediction = {
   labelName: string;
   /**
    * The predicted label index. A label index is an unique integer identifies a label in your label book.
-   * See https://support.landing.ai/docs/manage-label-book for more details.
+   * See https://landinglens.docs.landing.ai/manage-label-book for more details.
    */
   labelIndex: number;
 };
