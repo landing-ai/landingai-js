@@ -16,7 +16,7 @@
 <li><a href="../modules/landingai.html">landingai</a></li>
 <li><a href="landingai.InferenceResult.html">InferenceResult</a></li></ul>
 <h1>Type alias InferenceResult</h1></div>
-<div class="tsd-signature"><span class="tsd-kind-type-alias">Inference<wbr/>Result</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">backbonepredictions</span><span class="tsd-signature-symbol">: </span><a href="landingai.PredictionsMap.html" class="tsd-signature-type tsd-kind-type-alias">PredictionsMap</a><span class="tsd-signature-symbol"> | </span><a href="landingai.ServerSegmentationPredictions.html" class="tsd-signature-type tsd-kind-type-alias">ServerSegmentationPredictions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">backbonetype</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;SegmentationPrediction&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ObjectDetectionPrediction&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">predictions</span><span class="tsd-signature-symbol">: </span><a href="landingai.ServerSegmentationPredictions.html" class="tsd-signature-type tsd-kind-type-alias">ServerSegmentationPredictions</a><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;SegmentationPrediction&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ClassificationPrediction&quot;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
+<div class="tsd-signature"><span class="tsd-kind-type-alias">Inference<wbr/>Result</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">backbonepredictions</span><span class="tsd-signature-symbol">: </span><a href="landingai.PredictionsMap.html" class="tsd-signature-type tsd-kind-type-alias">PredictionsMap</a><span class="tsd-signature-symbol"> | </span><a href="landingai.ServerSegmentationPredictions.html" class="tsd-signature-type tsd-kind-type-alias">ServerSegmentationPredictions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">backbonetype</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;SegmentationPrediction&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ObjectDetectionPrediction&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">latency</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">model_id</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">predictions</span><span class="tsd-signature-symbol">: </span><a href="landingai.ServerSegmentationPredictions.html" class="tsd-signature-type tsd-kind-type-alias">ServerSegmentationPredictions</a><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;SegmentationPrediction&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ClassificationPrediction&quot;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
 <div class="tsd-comment tsd-typography"><p>Inference API response</p>
 </div>
 <div class="tsd-type-declaration">
@@ -27,8 +27,17 @@
 <div class="tsd-comment tsd-typography"><p>backbone predictions. e.g. bounding boxes</p>
 </div></li>
 <li class="tsd-parameter">
-<h5><span class="tsd-kind-property">backbonetype</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;SegmentationPrediction&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ObjectDetectionPrediction&quot;</span></h5>
-<div class="tsd-comment tsd-typography"><p>Prediction type. Only for object detection, segmentation projects.</p>
+<h5><span class="tsd-kind-property">backbonetype</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;SegmentationPrediction&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ObjectDetectionPrediction&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+<div class="tsd-comment tsd-typography"><p>Prediction type. Only for object detection, segmentation projects.
+For classification projects, this will be <code>null</code>.</p>
+</div></li>
+<li class="tsd-parameter">
+<h5><span class="tsd-kind-property">latency</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>Inference latency in seconds.</p>
+</div></li>
+<li class="tsd-parameter">
+<h5><span class="tsd-kind-property">model_<wbr/>id</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The model ID used for inference.</p>
 </div></li>
 <li class="tsd-parameter">
 <h5><span class="tsd-kind-property">predictions</span><span class="tsd-signature-symbol">: </span><a href="landingai.ServerSegmentationPredictions.html" class="tsd-signature-type tsd-kind-type-alias">ServerSegmentationPredictions</a></h5>
@@ -43,7 +52,7 @@ for the image, stating if the image is OK (no annotations detected) or NG (has a
 <p>For visual prompting projects, this field will be &#39;SegmentationPrediction&#39;.</p>
 </div></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/landing-ai/landingai-js/blob/cb18ceb/packages/core/lib/types.ts#L133">packages/core/lib/types.ts:133</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/landing-ai/landingai-js/blob/4604ec1/packages/core/lib/types.ts#L133">packages/core/lib/types.ts:133</a></li></ul></aside></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
