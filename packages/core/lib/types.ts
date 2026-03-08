@@ -152,6 +152,15 @@ export type InferenceResult = {
   type: 'SegmentationPrediction' | 'ClassificationPrediction';
   /**
    * Prediction type. Only for object detection, segmentation projects.
+   * For classification projects, this will be `null`.
    */
-  backbonetype: 'SegmentationPrediction' | 'ObjectDetectionPrediction';
+  backbonetype: 'SegmentationPrediction' | 'ObjectDetectionPrediction' | null;
+  /**
+   * Inference latency in seconds.
+   */
+  latency: number;
+  /**
+   * The model ID used for inference.
+   */
+  model_id: string;
 };
