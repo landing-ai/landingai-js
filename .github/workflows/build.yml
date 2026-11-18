@@ -1,12 +1,8 @@
 name: Build
 on:
+  # No path filter: this check is required on main, and a filtered-out run
+  # never reports, which leaves the PR unable to merge.
   pull_request:
-    paths:
-      - '.github/workflows/build.yml'
-      - 'packages/**'
-      - 'tsconfig.json'
-      - 'package.json'
-      - 'yarn.lock'
 
 jobs:
   ci-build:
