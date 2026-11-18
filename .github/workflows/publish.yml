@@ -36,9 +36,9 @@ jobs:
           # No registry-url: it writes an _authToken line to .npmrc, and this
           # job authenticates with OIDC instead (npmjs.org is npm's default).
 
-      # Trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.
-      - name: Install npm with trusted publishing support
-        run: npm install -g npm@11.6.2
+      # Staged publishing needs npm >= 11.15.0 (and Node >= 22.14); Node 22 ships npm 10.
+      - name: Install npm with staged publishing support
+        run: npm install -g npm@11.21.1
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -60,5 +60,7 @@ jobs:
               echo "$name@$version is already on npm; skipping"
               continue
             fi
-            (cd "$dir" && npm publish --provenance --access public)
+            # The trusted publisher may only stage: a maintainer approves each
+            # version on npmjs.com (with 2FA) before it goes live.
+            (cd "$dir" && npm stage publish --provenance --access public)
           done
