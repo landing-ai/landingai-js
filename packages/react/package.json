@@ -1,7 +1,7 @@
 {
   "name": "landingai-react",
   "version": "1.1.1",
-  "description": "> TODO: description",
+  "description": "React components for capturing an image and displaying LandingLens predictions on it.",
   "author": "Lan Tian <tian.lan@landing.ai>",
   "homepage": "https://github.com/landing-ai/landingai-js#readme",
   "license": "MIT",

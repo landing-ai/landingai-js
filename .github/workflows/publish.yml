@@ -1,0 +1,64 @@
+name: Publish
+
+# Publishes each package whose package.json version is not yet on npm.
+# Bump versions in a reviewed PR; then run this workflow from main.
+# No git push and no tags: main is PR-only and v* tags are locked.
+on:
+  workflow_dispatch:
+
+# One release at a time; never cancel a publish midway.
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    # Also enforced by the environment; this catches a dispatch from another ref
+    # if that setting ever changes.
+    if: github.ref == 'refs/heads/main'
+    # Required reviewer, and deploys only from main.
+    environment: release
+    permissions:
+      contents: read
+      id-token: write # npm trusted publishing (OIDC); no npm token exists
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+          # No registry-url: it writes an _authToken line to .npmrc, and this
+          # job authenticates with OIDC instead (npmjs.org is npm's default).
+
+      # Trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.
+      - name: Install npm with trusted publishing support
+        run: npm install -g npm@11.6.2
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Type-check
+        run: yarn tsc
+
+      - name: Build
+        run: yarn build
+
+      # Order matters: landingai-react depends on landingai.
+      - name: Publish new versions
+        run: |
+          set -euo pipefail
+          for dir in packages/core packages/react; do
+            name=$(jq -r .name "$dir/package.json")
+            version=$(jq -r .version "$dir/package.json")
+            if npm view "$name@$version" version >/dev/null 2>&1; then
+              echo "$name@$version is already on npm; skipping"
+              continue
+            fi
+            (cd "$dir" && npm publish --provenance --access public)
+          done
