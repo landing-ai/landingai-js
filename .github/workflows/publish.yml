@@ -6,10 +6,18 @@ name: Publish
 on:
   workflow_dispatch:
 
+# One release at a time; never cancel a publish midway.
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
 jobs:
   publish:
     name: Publish to npm
     runs-on: ubuntu-latest
+    # Also enforced by the environment; this catches a dispatch from another ref
+    # if that setting ever changes.
+    if: github.ref == 'refs/heads/main'
     # Required reviewer, and deploys only from main.
     environment: release
     permissions:
@@ -25,7 +33,8 @@ jobs:
         with:
           node-version: '22'
           cache: 'yarn'
-          registry-url: 'https://registry.npmjs.org'
+          # No registry-url: it writes an _authToken line to .npmrc, and this
+          # job authenticates with OIDC instead (npmjs.org is npm's default).
 
       # Trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.
       - name: Install npm with trusted publishing support
