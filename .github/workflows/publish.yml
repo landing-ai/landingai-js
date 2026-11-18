@@ -26,19 +26,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Use Node.js 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '22'
           cache: 'yarn'
           # No registry-url: it writes an _authToken line to .npmrc, and this
           # job authenticates with OIDC instead (npmjs.org is npm's default).
 
-      # Trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.
-      - name: Install npm with trusted publishing support
-        run: npm install -g npm@11.6.2
+      # Staged publishing needs npm >= 11.15.0; npm 12 needs Node >= 22.22.2.
+      - name: Install npm with staged publishing support
+        run: npm install -g npm@12.2.2
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -60,5 +60,17 @@ jobs:
               echo "$name@$version is already on npm; skipping"
               continue
             fi
-            (cd "$dir" && npm publish --provenance --access public)
+            # The trusted publisher may only stage: a maintainer approves each
+            # version on npmjs.com (with 2FA) before it goes live. A staged
+            # version is invisible to npm view but holds its version number, so
+            # a rerun before approval is refused as a duplicate; treat that as done.
+            if ! out=$(cd "$dir" && npm stage publish --provenance --access public 2>&1); then
+              echo "$out"
+              if grep -q 'cannot publish over the previously published versions' <<<"$out"; then
+                echo "$name@$version is already staged or published; skipping"
+                continue
+              fi
+              exit 1
+            fi
+            echo "$out"
           done
