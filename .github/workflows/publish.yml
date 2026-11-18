@@ -61,6 +61,16 @@ jobs:
               continue
             fi
             # The trusted publisher may only stage: a maintainer approves each
-            # version on npmjs.com (with 2FA) before it goes live.
-            (cd "$dir" && npm stage publish --provenance --access public)
+            # version on npmjs.com (with 2FA) before it goes live. A staged
+            # version is invisible to npm view but holds its version number, so
+            # a rerun before approval is refused as a duplicate; treat that as done.
+            if ! out=$(cd "$dir" && npm stage publish --provenance --access public 2>&1); then
+              echo "$out"
+              if grep -q 'cannot publish over the previously published versions' <<<"$out"; then
+                echo "$name@$version is already staged or published; skipping"
+                continue
+              fi
+              exit 1
+            fi
+            echo "$out"
           done
