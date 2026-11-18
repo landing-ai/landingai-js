@@ -26,19 +26,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Use Node.js 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '22'
           cache: 'yarn'
           # No registry-url: it writes an _authToken line to .npmrc, and this
           # job authenticates with OIDC instead (npmjs.org is npm's default).
 
-      # Staged publishing needs npm >= 11.15.0 (and Node >= 22.14); Node 22 ships npm 10.
+      # Staged publishing needs npm >= 11.15.0; npm 12 needs Node >= 22.22.2.
       - name: Install npm with staged publishing support
-        run: npm install -g npm@11.21.1
+        run: npm install -g npm@12.2.2
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
